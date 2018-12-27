@@ -40,19 +40,87 @@ const {runIntervalTimer,runTimer}=require("../time")
 
 var assert = require('assert');
 var expect=require('expect.js');
-describe('Array', function() {
-  describe('#runIntervalTimer()', function() {
-    it('should return 1000 ', function(done) {
-        let starttimer=new Date().getTime(),endTime;
-        let a=runIntervalTimer("a",1000,function(count){
-            if(count===1){
-                endTime=new Date().getTime()-starttimer
-                //assert.equal(, );
-                let res=expect(endTime-starttimer).to.be.greaterThan(2000);
-                done(res)
+describe('timer', function() {
+//   describe('#multi runIntervalTimer()', function() {
+//     it('1countdown 10000ms, shoud less than 10s', function(done) {
+//         let times=0
+//         function getTimes(){
+//             times++;
+//             if(times>=4){
+//                 done();
+//             }
+//         }
+//         runIntervalTimer("a",1000,function(){},10000,function(usedTime,counts){
+//             console.log(usedTime);
+//             expect(usedTime-10000).to.be.lessThan(10);
+//             getTimes()
+//         }).starttimer()
+//         runIntervalTimer("b",1000,function(){},10000,function(usedTime,counts){
+//             console.log(usedTime);
+//             expect(usedTime-10000).to.be.lessThan(10);
+//             getTimes()
+//         }).starttimer()
+//         runIntervalTimer("c",1000,function(){},10000,function(usedTime,counts){
+//             console.log(usedTime);
+//             expect(usedTime-10000).to.be.lessThan(10);
+//             getTimes()
+//         }).starttimer()
+//         runIntervalTimer("d",1000,function(){},10000,function(usedTime,counts){
+//             console.log(usedTime);
+//             expect(usedTime-10000).to.be.lessThan(10);
+//             getTimes()
+//         }).starttimer()
+//     });
+//   });
+  describe('#multi runTimer()', function() {
+    it('1countdown 10000ms, shoud less than 10s', function(done) {
+        let times=0
+        function getTimes(){
+            times++;
+            if(times>=8){
+                done();
             }
-        },2000)
-        a.starttimer()
+        }
+        runTimer("a",1000,function(){},10000,function(usedTime,counts){
+            console.log(usedTime);
+            expect(usedTime-10000).to.be.lessThan(10);
+            getTimes()
+        }).starttimer()
+        runTimer("b",1000,function(){},10000,function(usedTime,counts){
+            console.log(usedTime);
+            expect(usedTime-10000).to.be.lessThan(10);
+            getTimes()
+        }).starttimer()
+        runTimer("c",1000,function(){},10000,function(usedTime,counts){
+            console.log(usedTime);
+            expect(usedTime-10000).to.be.lessThan(10);
+            getTimes()
+        }).starttimer()
+        runTimer("d",1000,function(){},10000,function(usedTime,counts){
+            console.log(usedTime);
+            expect(usedTime-10000).to.be.lessThan(10);
+            getTimes()
+        }).starttimer()
+        runTimer("e",1000,function(){},10000,function(usedTime,counts){
+            console.log(usedTime);
+            expect(usedTime-10000).to.be.lessThan(10);
+            getTimes()
+        }).starttimer()
+        runTimer("f",1000,function(){},10000,function(usedTime,counts){
+            console.log(usedTime);
+            expect(usedTime-10000).to.be.lessThan(10);
+            getTimes()
+        }).starttimer()
+        runTimer("g",1000,function(){},10000,function(usedTime,counts){
+            console.log(usedTime);
+            expect(usedTime-10000).to.be.lessThan(10);
+            getTimes()
+        }).starttimer()
+        runTimer("h",1000,function(){},10000,function(usedTime,counts){
+            console.log(usedTime);
+            expect(usedTime-10000).to.be.lessThan(10);
+            getTimes()
+        }).starttimer()
     });
   });
 });

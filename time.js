@@ -1,5 +1,5 @@
 //setTimeout版本
-function runTimer(id,aminTime,callback,maxTime){
+function runTimer(id,aminTime,callback,maxTime,afterTimeUp){
     let timer=null
     let running=false
     let usedTime=0
@@ -27,7 +27,7 @@ function runTimer(id,aminTime,callback,maxTime){
     function cleartimer(){
         running=false
         usedTime=getTime()-usedTime
-        console.log(id,"runTimer",usedTime,countTimes)
+        afterTimeUp(usedTime,countTimes)
         clearTimeout(timer);
     }
     function starttimer(){
@@ -42,7 +42,7 @@ function runTimer(id,aminTime,callback,maxTime){
 
 
 //setTimeInterVal版本
-function runIntervalTimer(id,aminTime,callback,maxTime){
+function runIntervalTimer(id,aminTime,callback,maxTime,afterTimeUp){
     let timer=null
     let running=false
     let startTime=0
@@ -64,7 +64,7 @@ function runIntervalTimer(id,aminTime,callback,maxTime){
     }
     function cleartimer(){
         running=false
-        console.log(id,"runIntervalTimer",getTime()-usedTime,countTimes)
+        afterTimeUp(getTime()-usedTime,countTimes);
         clearInterval(timer);
     }
     function starttimer(){
@@ -98,7 +98,7 @@ function runAnimTimer(aminTime,callback){
     }
     function cleartimer(){
         running=false
-        console.log(getTime()-usedTime)
+        afterTimeUp(getTime()-usedTime,countTimes)
         window.cancelAnimationFrame(timer);
     }
     function starttimer(){

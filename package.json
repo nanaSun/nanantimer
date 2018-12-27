@@ -4,7 +4,7 @@
   "description": "",
   "main": "time.js",
   "scripts": {
-    "test": "mocha ./test/test.js -t  10000"
+    "test": "mocha ./test/test.js -t  1000000"
   },
   "repository": {
     "type": "git",
