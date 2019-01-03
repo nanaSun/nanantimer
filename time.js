@@ -29,6 +29,7 @@ function runTimer(id,aminTime,callback,maxTime,afterTimeUp){
         usedTime=getTime()-usedTime
         afterTimeUp(usedTime,countTimes)
         clearTimeout(timer);
+        //timer=null
     }
     function starttimer(){
         running=true
@@ -66,6 +67,7 @@ function runIntervalTimer(id,aminTime,callback,maxTime,afterTimeUp){
         running=false
         afterTimeUp(getTime()-usedTime,countTimes);
         clearInterval(timer);
+        //timer=null
     }
     function starttimer(){
         running=true
@@ -100,6 +102,7 @@ function runAnimTimer(aminTime,callback){
         running=false
         afterTimeUp(getTime()-usedTime,countTimes)
         window.cancelAnimationFrame(timer);
+        timer=null
     }
     function starttimer(){
         running=true
