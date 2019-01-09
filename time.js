@@ -27,7 +27,7 @@ function runTimer(id,aminTime,callback,maxTime,afterTimeUp){
     function cleartimer(){
         running=false
         usedTime=getTime()-usedTime
-        afterTimeUp(usedTime,countTimes)
+        afterTimeUp(usedTime,countTimes,id)
         clearTimeout(timer);
         //timer=null
     }
@@ -65,7 +65,7 @@ function runIntervalTimer(id,aminTime,callback,maxTime,afterTimeUp){
     }
     function cleartimer(){
         running=false
-        afterTimeUp(getTime()-usedTime,countTimes);
+        afterTimeUp(getTime()-usedTime,countTimes,id);
         clearInterval(timer);
         //timer=null
     }

@@ -1,27 +1,113 @@
 const {runIntervalTimer,runTimer}=require("../time")
 
-var expect=require('expect.js');
-describe('timer', function() {
-    // for(let i=0;i<12;i++){
-    //     describe(`#multi ${i} runIntervalTimer()`, function() {
-    //         it('1countdown 10000ms, shoud less than 10s', function(done) {
-    //             runIntervalTimer("a",1000,function(){},10000,function(usedTime,counts){  
-    //                 console.log("runIntervalTimer"+i,usedTime-10000);        
-    //                 expect(usedTime-10000).to.be.lessThan(10);
-    //                 done()
-    //             }).starttimer()
-    //         });
-    //     })
-    // }
-    for(let i=0;i<12;i++){
-        describe('#multi runTimer()', function() {
-            it('1countdown 10000ms, shoud less than 10s', function(done) {
-                runTimer("a",1000,function(){},10000,function(usedTime,counts){
-                    console.log("runTimer",usedTime-10000);
-                    expect(usedTime-10000).to.be.lessThan(10);
-                    done()
-                }).starttimer()
-            });
+
+const chai=require("chai")
+const expect=chai.expect
+const assert=chai.assert
+describe('runIntervalTimer', function() {
+    describe(`#single runIntervalTimer() with burden ande less burden`, function() {
+        it('less burdened', function(done) {
+            runIntervalTimer("a",100,function(){},1000,function(usedTime,counts){
+                console.log(counts);
+                assert.ok(true);
+                done();
+            }).starttimer()
         });
-    }
+        it('more burdened', function(done) {
+            runIntervalTimer("a",100,function(){
+                let array=[]
+                for(let j=0;j<10000000;j++){
+                    array.push(j)
+                }
+            },1000,function(usedTime,counts){
+                console.log(counts);
+                assert.ok(true);
+                done();
+            }).starttimer()
+        });
+    })
+    describe(`#multi runIntervalTimer() running at the same time`, function() {
+        it('multi runIntervalTimer with no burden', function(done) {
+            let countdown=0
+            for(let i=0;i<10;i++){
+                runIntervalTimer(i,100,function(){},1000,function(usedTime,counts,id){
+                    console.log(id,counts)
+                    expect(countdown).to.be.equal(id);
+                    countdown++
+                    if(countdown>=10) done()
+                }).starttimer()
+            }
+        });
+        it('multi runIntervalTimer with burden', function(done) {
+            let countdown=0
+            for(let i=0;i<10;i++){
+                runIntervalTimer(i,100,function(){
+                    let array=[]
+                    for(let j=0;j<10000000;j++){
+                        array.push(j)
+                    }
+                },1000,function(usedTime,counts,id){
+                    console.log(`id${counts}`)
+                    assert.ok(true);
+                    countdown++
+                    if(countdown>=10) done()
+                }).starttimer()
+            }
+        });
+    })
 });
+
+describe('runTimer', function() {
+    describe(`#single runTimer() with burden ande less burden`, function() {
+        it('less burdened', function(done) {
+            runTimer("a",100,function(){},1000,function(usedTime,counts){
+                console.log(counts);
+                assert.ok(true);
+                done();
+            }).starttimer()
+        });
+        it('more burdened', function(done) {
+            runTimer("a",100,function(){
+                let array=[]
+                for(let j=0;j<10000000;j++){
+                    array.push(j)
+                }
+            },1000,function(usedTime,counts){
+                console.log(counts);
+                assert.ok(true);
+                done();
+            }).starttimer()
+        });
+    })
+    describe(`#multi runTimer() running at the same time `, function() {
+        it('multi runTimer with no burden', function(done) {
+            let countdown=0
+            for(let i=0;i<10;i++){
+                runTimer(i,100,function(){},1000,function(usedTime,counts,id){
+                    console.log(id,counts)
+                    assert.ok(true);
+                    countdown++
+                    if(countdown>=10) done()
+                }).starttimer()
+            }
+        });
+        it('multi runTimer with burden', function(done) {
+            let countdown=0
+            for(let i=0;i<10;i++){
+                runTimer(i,100,function(){
+                    let array=[]
+                    for(let j=0;j<10000000;j++){
+                        array.push(j)
+                    }
+                },1000,function(usedTime,counts,id){
+                    console.log(id,counts)
+                    assert.ok(true);
+                    countdown++
+                    if(countdown>=10) done()
+                }).starttimer()
+            }
+        });
+    })
+});
+
+
