@@ -63,9 +63,11 @@ describe('runTimer', function() {
             let timer;
             let stop=false
             setTimeout(()=>{
+                console.log("setTimeout")
                 stop=true
             },200)
             timer=runTimer("a",100,function(id,runtime,counts){
+                console.log("running")
                 if(stop){
                    timer.cleartimer()
                 }

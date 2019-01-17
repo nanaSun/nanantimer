@@ -69,6 +69,7 @@ function runIntervalTimer(id,aminTime,callback,maxTime,afterTimeUp){
         timer=setInterval(()=>{
             if(getTime()-usedTime>=maxTime){ 
                 cleartimer()
+                return 
             }
             countTimes++
             callback(getTime()-startTime);

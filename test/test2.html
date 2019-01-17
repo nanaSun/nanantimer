@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="grow">click me</div>
+    <script>
+        let array=[]
+        // let grow=document.getElementById("grow")
+        // 
+        // grow.addEventListener("click",clearArray)
+        createArray()
+        function createArray(){
+            //let array=[]
+            for(let j=0;j<100000;j++){
+                array.push(j*3*5)
+            }
+        }
+        // function clearArray(){
+        //     array=[]
+        // }
+    </script>
+</body>
+</html>

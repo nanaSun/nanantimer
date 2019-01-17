@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="grow">click me</div>
+    <div id="root"></div>
+    <script src="../time.js"></script>
+    <script>
+        let root=document.getElementById("root")
+        function createElement(){
+            //let array=[]
+            //for(let j=0;j<100000000;j++){
+            for(let j=0;j<100;j++){
+                //array.push(j*3*5)
+                let tmp=document.createElement("div")
+                tmp.innerHTML=j;
+                //div.appendChild(tmp);
+                //tmp=null
+                //tmp.parentNode.removeNode(tmp);
+            }
+            //array=[]
+        }
+        function timeout(diffTime){
+            timer=setTimeout(()=>{
+                if(getTime()-usedTime>=maxTime){ 
+                    cleartimer()
+                    return
+                }
+                countTimes++
+                callback(runtime);
+                timeout(saveRecord())
+            },runtime)
+        }
+        //for(let i=0;i<2;i++){
+            runIntervalTimer(0,100,createElement,1000,function(usedTime,counts,id){
+                playGame(usedTime,counts,id)
+            }).starttimer()
+        //}
+        function playGame(id,usedTime,counts){
+            div=null;
+            console.log("playgGame",id,usedTime,counts)
+        }
+    </script>
+</body>
+</html>
